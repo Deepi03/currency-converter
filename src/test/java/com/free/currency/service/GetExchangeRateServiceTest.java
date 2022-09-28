@@ -16,7 +16,7 @@ public class GetExchangeRateServiceTest {
 
     @Test
     public void getCurrencyRateTest() {
-        assertEquals(0.96, getExchangeRateService.getCurrencyRate(new CurrencyExchangeRateRequest("EUR", "USD", "1")));
+        assertEquals(0.96, getExchangeRateService.getCurrencyRate(new CurrencyExchangeRateRequest(eur, usd, "1")));
     }
 
 }
