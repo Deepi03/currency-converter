@@ -10,7 +10,7 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-import com.free.currency.dto.CurrencyInput;
+import com.free.currency.dto.CurrencyExchangeRateRequest;
 import com.free.currency.service.CurrencyExchangeService;
 
 public class CurrencyConversionJob implements Job {
@@ -33,8 +33,9 @@ public class CurrencyConversionJob implements Job {
         for (String fromToCurrency : currencies) {
             String fromCurrency = fromToCurrency.split("-")[0];
             String toCurrency = fromToCurrency.split("-")[1];
-            CurrencyInput currencyInput = new CurrencyInput(fromCurrency, toCurrency, "1");
-            ExchangeRateMap.put(fromToCurrency, currencyExchangeService.getCurrencyRate(currencyInput));
+            CurrencyExchangeRateRequest currencyExchangeRateRequest = new CurrencyExchangeRateRequest(fromCurrency,
+                    toCurrency, "1");
+            ExchangeRateMap.put(fromToCurrency, currencyExchangeService.getCurrencyRate(currencyExchangeRateRequest));
         }
 
     }

@@ -20,6 +20,7 @@ public class CurrencyConverterController {
         public ResponseEntity<ExchangeResponse> exchangeCurrency(
                         @RequestBody CurrencyExchangeRateRequest currencyExchangeRateRequest)
                         throws IOException {
+                System.out.println("currency controller ####" + currencyExchangeRateRequest.getFrom());
                 Double rate = getExchangeRateService.getCurrencyRate(currencyExchangeRateRequest);
                 ExchangeResponse resp = new ExchangeResponse();
                 resp.setFrom(currencyExchangeRateRequest.getFrom());

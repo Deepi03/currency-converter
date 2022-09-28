@@ -9,21 +9,21 @@ import java.io.IOException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.free.currency.dto.CurrencyExchangeApiResponse;
-import com.free.currency.dto.CurrencyInput;
+import com.free.currency.dto.CurrencyExchangeRateRequest;
 
 public class CurrencyExchangeService {
 
-        String API_KEY = "ppsxvS7KDPtZ7qcQyqM5NPvyqBD4tVmK";
+        String API_KEY = "GB4yze8GY0JGLlDYw08p4d1cJXQpxLKY";
 
         private final OkHttpClient httpClient = new OkHttpClient();
 
-        public double getCurrencyRate(CurrencyInput currencyInput) throws IOException {
+        public double getCurrencyRate(CurrencyExchangeRateRequest currencyExchangeRateRequest) throws IOException {
 
                 Request request = new Request.Builder()
                                 .url("https://api.apilayer.com/exchangerates_data/convert?to="
-                                                + currencyInput.getFrom()
-                                                + "&from=" + currencyInput.getTo() + "&amount="
-                                                + currencyInput.getAmount())
+                                                + currencyExchangeRateRequest.getFrom()
+                                                + "&from=" + currencyExchangeRateRequest.getTo() + "&amount="
+                                                + currencyExchangeRateRequest.getAmount())
                                 .addHeader("apikey", API_KEY) // add request headers
                                 .method("GET", null)
                                 .build();
@@ -32,10 +32,6 @@ public class CurrencyExchangeService {
                 CurrencyExchangeApiResponse exchangeResponse = m.readValue(response.body().string(),
                                 new TypeReference<CurrencyExchangeApiResponse>() {
                                 });
-
-                System.out.println(" ????????? " +
-                                exchangeResponse.getResult());
-
                 return exchangeResponse.getResult();
         }
 }
