@@ -15,7 +15,7 @@ Following tools required,
  mvn clean test
  ```
 
- ## API test
+ ## API 
 
 ```
 mvn spring-boot:run
